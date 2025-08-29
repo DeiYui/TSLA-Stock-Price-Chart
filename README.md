@@ -1,4 +1,5 @@
 # Ứng Dụng Biểu Đồ Cổ Phiếu TSLA
+<img width="1843" height="862" alt="image" src="https://github.com/user-attachments/assets/833e1e72-793f-4bec-8662-3929eb581b90" />
 
 Ứng dụng React được xây dựng bằng Vite để hiển thị biểu đồ giá cổ phiếu Tesla (TSLA) với nhiều khung thời gian khác nhau.
 
