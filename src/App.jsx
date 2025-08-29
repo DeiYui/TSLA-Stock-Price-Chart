@@ -199,7 +199,13 @@ function App() {
                   formatter={(value, name, props) => {
                     return [`$${value.toFixed(2)}`, 'Price'];
                   }}
-                  labelFormatter={() => ''}
+                  labelFormatter={(label, payload) => {
+                    if (payload && payload.length > 0 && payload[0].payload) {
+                      const dataPoint = payload[0].payload;
+                      return `Date: ${dataPoint.date || label}`;
+                    }
+                    return `Date: ${label}`;
+                  }}
                   contentStyle={{
                     backgroundColor: '#f8fafc',
                     border: '1px solid #e2e8f0',
