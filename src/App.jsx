@@ -76,19 +76,23 @@ function App() {
               return null
             }
             
+            const formattedDate = date.toLocaleDateString('en-US', { 
+              month: 'short', 
+              day: '2-digit', 
+              year: '2-digit' 
+            })
+            
             return {
-              date: date.toLocaleDateString('en-US', { 
-                month: 'short', 
-                day: '2-digit', 
-                year: '2-digit' 
-              }),
+              date: formattedDate,
               price: price,
-              timestamp: item.date
+              timestamp: item.date,
+              originalDate: item.date
             }
           })
           .filter(item => item !== null) // Loại bỏ dữ liệu null
         
         console.log('Transformed data:', transformedData.slice(0, 3))
+        console.log('Sample transformed item:', transformedData[0])
         setStockData(transformedData)
       } else {
         setError('No data available for this timeframe')
@@ -192,8 +196,17 @@ function App() {
                   tick={{ fontSize: window.innerWidth < 414 ? 8 : window.innerWidth < 768 ? 10 : 12 }}
                 />
                 <Tooltip 
-                  formatter={(value) => [`$${value.toFixed(2)}`, 'Price']}
-                  labelFormatter={(label) => `Date: ${label}`}
+                  formatter={(value, name, props) => {
+                    const dataPoint = props.payload;
+                    return [`$${value.toFixed(2)}`, 'Price'];
+                  }}
+                  labelFormatter={(label, payload) => {
+                    if (payload && payload.length > 0 && payload[0].payload) {
+                      const dataPoint = payload[0].payload;
+                      return `Date: ${dataPoint.date || label}`;
+                    }
+                    return `Date: ${label}`;
+                  }}
                   contentStyle={{
                     backgroundColor: '#f8fafc',
                     border: '1px solid #e2e8f0',
