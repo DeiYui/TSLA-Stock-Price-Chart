@@ -197,16 +197,9 @@ function App() {
                 />
                 <Tooltip 
                   formatter={(value, name, props) => {
-                    const dataPoint = props.payload;
-                    return [`$${value.toFixed(2)}`, 'Price'];
+                    return [`$${value.toFixed(2)}`, ''];
                   }}
-                  labelFormatter={(label, payload) => {
-                    if (payload && payload.length > 0 && payload[0].payload) {
-                      const dataPoint = payload[0].payload;
-                      return `Date: ${dataPoint.date || label}`;
-                    }
-                    return `Date: ${label}`;
-                  }}
+                  labelFormatter={() => ''}
                   contentStyle={{
                     backgroundColor: '#f8fafc',
                     border: '1px solid #e2e8f0',
