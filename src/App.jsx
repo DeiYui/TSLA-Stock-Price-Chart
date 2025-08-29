@@ -197,7 +197,7 @@ function App() {
                 />
                 <Tooltip 
                   formatter={(value, name, props) => {
-                    return [`$${value.toFixed(2)}`, ''];
+                    return [`$${value.toFixed(2)}`, 'Price'];
                   }}
                   labelFormatter={() => ''}
                   contentStyle={{
